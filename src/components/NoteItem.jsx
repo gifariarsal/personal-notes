@@ -3,11 +3,11 @@ import { showFormattedDate } from "../utils";
 import NoteItemAction from "./NoteItemAction";
 import NoteItemContent from "./NoteItemContent";
 
-const NoteItem = ({ title, body, createdAt, archived }) => {
+const NoteItem = ({ id, title, body, createdAt, archived, onDelete, onArchive }) => {
   return (
     <div className="note-item">
       <NoteItemContent title={title} body={body} createdAt={createdAt} />
-      <NoteItemAction />
+      <NoteItemAction id={id} archived={archived} onDelete={onDelete} onArchive={onArchive} />
     </div>
   );
 };
