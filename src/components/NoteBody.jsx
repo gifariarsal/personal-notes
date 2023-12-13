@@ -8,7 +8,7 @@ const NoteBody = ({ notes, onAddNote, onDelete, onArchive }) => {
     <main className="note-app__body">
       <NoteInput onAddNote={onAddNote} />
       <NoteBodyActive notes={notes} onDelete={onDelete} onArchive={onArchive} />
-      <NoteBodyArchive notes={notes} />
+      <NoteBodyArchive notes={notes} onDelete={onDelete} onArchive={onArchive} />
     </main>
   );
 };
