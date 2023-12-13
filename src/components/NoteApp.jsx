@@ -8,11 +8,13 @@ class NoteApp extends React.Component {
     super(props);
     this.state = {
       notes: getInitialData(),
+      filteredNotes: [], // Add a new state to store filtered notes
     };
 
     this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
     this.onDeleteHandler = this.onDeleteHandler.bind(this);
     this.onArchiveHandler = this.onArchiveHandler.bind(this);
+    this.searchNotes = this.searchNotes.bind(this);
   }
 
   onAddNoteHandler({ title, body }) {
@@ -47,15 +49,27 @@ class NoteApp extends React.Component {
     this.setState({ notes });
   }
 
+  searchNotes(searchTerm) {
+    const filteredNotes = this.state.notes.filter((note) =>
+      note.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    this.setState({ filteredNotes });
+  }
+
   render() {
     return (
       <>
-        <NoteHeader />
+        <NoteHeader onSearch={this.searchNotes} />
         <NoteBody
           onAddNote={this.onAddNoteHandler}
           onDelete={this.onDeleteHandler}
           onArchive={this.onArchiveHandler}
-          notes={this.state.notes}
+          notes={
+            this.state.filteredNotes.length > 0
+              ? this.state.filteredNotes
+              : this.state.notes
+          }
         />
       </>
     );

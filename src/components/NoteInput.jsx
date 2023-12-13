@@ -38,16 +38,23 @@ class NoteInput extends React.Component {
 
   onAddNoteHandler(event) {
     event.preventDefault();
-    this.props.onAddNote({
-      title: this.state.title,
-      body: this.state.body,
-    });
 
-    this.setState(() => ({
-      title: "",
-      body: "",
-      remainingTitle: 50,
-    }));
+    const { title, body } = this.state;
+
+    if (!title.trim() || !body.trim()) {
+      alert("Silakan tulis judul dan isi catatan");
+    } else {
+      this.props.onAddNote({
+        title: title,
+        body: body,
+      });
+
+      this.setState(() => ({
+        title: "",
+        body: "",
+        remainingTitle: 50,
+      }));
+    }
   }
 
   render() {
