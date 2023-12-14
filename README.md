@@ -27,8 +27,21 @@ Gunakan fitur arsip untuk menyimpan catatan secara terpisah. Fitur ini memindahk
 ## Memulai
 
 1. Clone repositori Thothes.
-2. Instal dependensi yang diperlukan.
+```bash
+git clone https://github.com/gifariarsal/personal-notes.git
+```
+2. Buka direktori Thothes.
+```bash
+cd personal-notes
+```
+3. Instal dependensi yang diperlukan.
+```bash
+npm install
+```
 3. Jalankan aplikasi dan mulailah mengelola catatan pribadi Anda.
+```bash
+npm run dev
+```
 
 ## Penggunaan
 
@@ -39,4 +52,4 @@ Gunakan fitur arsip untuk menyimpan catatan secara terpisah. Fitur ini memindahk
 5. Cari catatan tertentu menggunakan bilah pencarian.
 6. Gunakan fitur arsip untuk menyimpan catatan secara terpisah.
 
-Selamat mencatat dengan Thothes! 📝
+Pastikan Node.js dan npm sudah terinstal di sistem Anda untuk menggunakan Thothes. Selamat mengelola catatan dengan Thothes! 📝
