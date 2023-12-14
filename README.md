@@ -38,7 +38,7 @@ cd personal-notes
 ```bash
 npm install
 ```
-3. Jalankan aplikasi dan mulailah mengelola catatan pribadi Anda.
+4. Jalankan aplikasi dan mulailah mengelola catatan pribadi Anda.
 ```bash
 npm run dev
 ```
