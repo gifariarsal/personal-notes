@@ -8,7 +8,7 @@ class NoteApp extends React.Component {
     super(props);
     this.state = {
       notes: getInitialData(),
-      filteredNotes: [], // Add a new state to store filtered notes
+      filteredNotes: [],
     };
 
     this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
@@ -18,25 +18,26 @@ class NoteApp extends React.Component {
   }
 
   onAddNoteHandler({ title, body }) {
-    this.setState((prevState) => {
-      return {
-        notes: [
-          ...prevState.notes,
-          {
-            id: +new Date(),
-            title,
-            body,
-            createdAt: new Date().toISOString(),
-            archived: false,
-          },
-        ],
-      };
-    });
+    this.setState((prevState) => ({
+      notes: [
+        ...prevState.notes,
+        {
+          id: +new Date(),
+          title,
+          body,
+          createdAt: new Date().toISOString(),
+          archived: false,
+        },
+      ],
+    }));
   }
 
   onDeleteHandler(id) {
     const notes = this.state.notes.filter((note) => note.id !== id);
-    this.setState({ notes });
+    this.setState({
+      notes,
+      filteredNotes: this.state.filteredNotes.filter((note) => note.id !== id),
+    });
   }
 
   onArchiveHandler(id) {
@@ -46,7 +47,15 @@ class NoteApp extends React.Component {
       }
       return note;
     });
-    this.setState({ notes });
+    this.setState({
+      notes,
+      filteredNotes: this.state.filteredNotes.map((note) => {
+        if (note.id === id) {
+          return { ...note, archived: !note.archived };
+        }
+        return note;
+      }),
+    });
   }
 
   searchNotes(searchTerm) {
